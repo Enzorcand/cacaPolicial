@@ -10,6 +10,19 @@ public class Rastreador {
     }
 
     public void iniciaRastreio(){
+        boolean canContinue = true;
         
+        do{
+            if ()
+        }while(true);
+    }
+    
+    public int searchStart(){
+        for (int i = 0; i < mapa[0].length ; i++) {
+            if (mapa[0][i] == '-'){
+                return i;
+            }
+        }
+        return -1;-
     }
 }
