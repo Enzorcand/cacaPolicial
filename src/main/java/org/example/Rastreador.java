@@ -1,21 +1,23 @@
 package org.example;
 
-import java.util.ArrayList;
+import jdk.jfr.DataAmount;
+import lombok.Data;
 
+import java.util.ArrayList;
+@Data
 public class Rastreador {
     private char[][] mapa;
     private int valorTotal;
 
-    public Rastreador(char[][] mapa){
-        this.mapa = mapa;
+    public Rastreador(){
         valorTotal = 0;
     }
 
-    public void iniciaRastreio(){
+    public boolean iniciaRastreio(){
         boolean canContinue = true;
-        int i = 0;
-        int j = searchStart();
-        int direction = 1;
+        int j = 0;
+        int i = searchStart();
+        int direction = 3;
         do{
             ArrayList<Character> array = new ArrayList<>();
             while(isANumber(mapa[i][j])) {
@@ -28,45 +30,52 @@ public class Rastreador {
                 }
             }
             if(!array.isEmpty()){
-
+                calculaValor(array);
             }
             direction = getDirection(i, j, direction);
+            if(mapa[i][j] == '#'){
+                canContinue = false;
+            }
             switch (direction) {
                 case 1 -> i++;
                 case 2 -> i--;
                 case 3 -> j++;
                 case 4 -> j--;
             }
-        }while(true);
+        }while(canContinue);
+        return true;
+    }
+    private void calculaValor(ArrayList<Character> array) {
+        int totalRoubado = 0;
+        for (int i = 0; i < array.size(); i++) {
+            totalRoubado =+ Integer.parseInt(String.valueOf(array.get(i)))*(array.size() - 1);
+        }
+        valorTotal =+ totalRoubado;
     }
 
     private int getDirection(int i, int j, int direction) {
         if(mapa[i][j] == '/'){
             if (direction == 1){
                 direction = 4;
+            } else if (direction == 4) {
+                direction = 1;
             }
             if (direction == 3){
                 direction = 2;
-            }
-            if(direction == 2){
+            } else if(direction == 2){
                 direction = 3;
-            }
-            if (direction == 4) {
-                direction = 2;
             }
         }
         if(mapa[i][j] == '\\'){
             if (direction == 1){
                 direction = 3;
+            } else if (direction == 3){
+                direction = 1;
             }
             if (direction == 2){
                 direction = 4;
-            }
-            if (direction == 3){
+            } else if (direction == 4){
                 direction = 2;
-            }
-            if (direction == 4){
-                direction = 1;
             }
         }
         return direction;
@@ -81,9 +90,9 @@ public class Rastreador {
         return false;
     }
 
-    private int searchStart(){
-        for (int i = 0; i < mapa[0].length ; i++) {
-            if (mapa[0][i] == '-'){
+    public int searchStart(){
+        for (int i = 0; i < mapa.length ; i++) {
+            if (mapa[i][0] == '-'){
                 return i;
             }
         }

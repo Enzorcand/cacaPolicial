@@ -15,14 +15,14 @@ public class Leitor {
 
     private void selecionaCaso(int caso) {
         switch (caso){
-            case 1 -> path = Paths.get("casosD/casoD50.txt");
-            case 2 -> path = Paths.get("casosD/casoD100.txt");
-            case 3 -> path = Paths.get("casosD/casoD200.txt");
-            case 4 -> path = Paths.get("casosD/casoD500.txt");
-            case 5 -> path = Paths.get("casosD/casoD750.txt");
-            case 6 -> path = Paths.get("casosD/casoD1000.txt");
-            case 7 -> path = Paths.get("casosD/casoD1500.txt");
-            case 8 -> path = Paths.get("casosD/casoD2000.txt");
+            case 1 -> path = Paths.get("src/main/java/org/example/casosD/casoD50.txt");
+            case 2 -> path = Paths.get("src/main/java/org/example/casosD/casoD100.txt");
+            case 3 -> path = Paths.get("src/main/java/org/example/casosD/casoD200.txt");
+            case 4 -> path = Paths.get("src/main/java/org/example/casosD/casoD500.txt");
+            case 5 -> path = Paths.get("src/main/java/org/example/casosD/casoD750.txt");
+            case 6 -> path = Paths.get("src/main/java/org/example/casosD/casoD1000.txt");
+            case 7 -> path = Paths.get("src/main/java/org/example/casosD/casoD1500.txt");
+            case 8 -> path = Paths.get("src/main/java/org/example/casosD/casoD2000.txt");
         }
     }
 
