@@ -7,7 +7,7 @@ import java.util.ArrayList;
 @Data
 public class Rastreador {
     private char[][] mapa;
-    private int valorTotal;
+    private double valorTotal;
 
     public Rastreador(){
         valorTotal = 0;
@@ -22,6 +22,7 @@ public class Rastreador {
             ArrayList<Character> array = new ArrayList<>();
             while(isANumber(mapa[i][j])) {
                 array.add(mapa[i][j]);
+                mapa[i][j] = '-';
                 switch (direction) {
                     case 1 -> i++;
                     case 2 -> i--;
@@ -46,11 +47,12 @@ public class Rastreador {
         return true;
     }
     private void calculaValor(ArrayList<Character> array) {
-        int totalRoubado = 0;
+        double totalRoubado = 0;
         for (int i = 0; i < array.size(); i++) {
-            totalRoubado =+ Integer.parseInt(String.valueOf(array.get(i)))*(array.size() - 1);
+            int numero = Integer.parseInt(String.valueOf(array.get(i)));
+            totalRoubado += numero*(Math.pow(10,(array.size() - (i+1))));
         }
-        valorTotal =+ totalRoubado;
+        valorTotal += totalRoubado;
     }
 
     private int getDirection(int i, int j, int direction) {

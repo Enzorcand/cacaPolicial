@@ -27,11 +27,16 @@ public class RastreadorTest {
             Leitor leitor = new Leitor(i);
             rastreador.setMapa(leitor.leMapa());
             Assertions.assertTrue(rastreador.iniciaRastreio());
+            System.out.println(rastreador.getValorTotal());
         }
     }
 
     @Test
     public void getAllMoneyCase1(){
-
+        Leitor leitor = new Leitor(1);
+        Rastreador rastreador = new Rastreador();
+        rastreador.setMapa(leitor.leMapa());
+        Assertions.assertTrue(rastreador.iniciaRastreio());
+        System.out.println(rastreador.getValorTotal());
     }
 }
